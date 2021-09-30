@@ -4,18 +4,38 @@
     box-sizing: border-box;
 }
 ul { list-style-type:none;}
+body {
+    background-color: #ddd;
+}
 
 /* page css */
+.box {
+    display: flex;
+    flex-direction: column;
+}
+
+
 header {
     padding: 10px;
-    display: inline-block;
 }
 header svg {
-    margin-right: 20px;
-    filter: invert(0%) sepia(90%) saturate(7500%) hue-rotate(335deg) brightness(110%) contrast(108%);
-    transition: all 1.1s;
+    margin-right: 25px;
 }
 header svg:hover {
-    transform:scale(1.2);
-    filter: invert(87%) sepia(5%) saturate(5554%) hue-rotate(168deg) brightness(100%) contrast(85%);
+    cursor: pointer;
+    filter: invert(78%) sepia(52%) saturate(4753%) hue-rotate(359deg) brightness(102%) contrast(105%);
+}
+
+
+.aside ul{
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 8px;
+}
+.aside li{
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    margin-top: 10px;
+    border: 1px solid #ccc;
 }
