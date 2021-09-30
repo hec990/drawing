@@ -1,0 +1,21 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul { list-style-type:none;}
+
+/* page css */
+header {
+    padding: 10px;
+    display: inline-block;
+}
+header svg {
+    margin-right: 20px;
+    filter: invert(0%) sepia(90%) saturate(7500%) hue-rotate(335deg) brightness(110%) contrast(108%);
+    transition: all 1.1s;
+}
+header svg:hover {
+    transform:scale(1.2);
+    filter: invert(87%) sepia(5%) saturate(5554%) hue-rotate(168deg) brightness(100%) contrast(85%);
+}
