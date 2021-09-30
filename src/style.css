@@ -1,47 +1,67 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-ul { list-style-type:none;}
-/* page css */
 
-.box {
-    display: flex;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
+ul {
+    list-style-type: none;
 }
 
+
+/* page css */
+
+body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden
+}
+
+.box {
+    position: relative;
+}
 
 header {
     padding: 10px;
     margin-top: 10px;
     cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
+
 header svg {
     margin-left: 10px;
     transition: all 0.5s;
 }
+
 header svg:hover {
     filter: invert(78%) sepia(52%) saturate(4753%) hue-rotate(359deg) brightness(102%) contrast(105%);
 }
+
 header svg .bigger:hover {
     transform: scale(1.3);
     filter: invert(78%) sepia(52%) saturate(4753%) hue-rotate(359deg) brightness(102%) contrast(105%);
 }
+
 header svg.active {
     transform: scale(1.2);
     filter: invert(78%) sepia(52%) saturate(4753%) hue-rotate(359deg) brightness(102%) contrast(105%);
 }
 
-
-.aside ul{
+.aside {
     display: inline-block;
+    position: absolute;
+    top: 80px;
+    left: 0;
+}
+
+.aside ul {
     margin-top: 20px;
     margin-left: 10px;
 }
-.aside li{
+
+.aside li {
     width: 38px;
     height: 38px;
     border-radius: 50%;
@@ -49,10 +69,18 @@ header svg.active {
     border: 2px solid #ccc;
     transition: all 1s;
 }
-.aside li:hover{
+
+.aside li:hover {
     cursor: pointer;
 }
-.aside li.active{
+
+.aside li.active {
     transform: scale(1.2);
 }
 
+
+/* canvas css */
+
+#cvs {
+    cursor: crosshair;
+}

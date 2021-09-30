@@ -103,7 +103,74 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"main.js":[function(require,module,exports) {
+})({"resize.js":[function(require,module,exports) {
+// 画布适配
+$(function () {
+    //添加窗口尺寸改变响应监听
+    $(window).resize(resizeCanvas);
+    //页面加载后先设置一下canvas大小
+    resizeCanvas();
+});
+
+// 窗口尺寸改变响应（ 修改canvas大小）
+function resizeCanvas() {
+    $("#cvs").attr("width", $(window).get(0).innerWidth);
+    $("#cvs").attr("height", $(window).get(0).innerHeight);
+};
+},{}],"toolbar.js":[function(require,module,exports) {
+var myCanvas = document.querySelector("#cvs");
+var context = myCanvas.getContext("2d");
+
+//  brushColor
+$("#blackColor").on('click', function () {
+    context.strokeStyle = "black";
+});
+$("#redColor").on('click', function () {
+    context.strokeStyle = "red";
+});
+$("#orangeColor").on('click', function () {
+    context.strokeStyle = "orange";
+});
+$("#yellowColor").on('click', function () {
+    context.strokeStyle = "yellow";
+});
+$("#greenColor").on('click', function () {
+    context.strokeStyle = "green";
+});
+$("#redColor").on('click', function () {
+    context.strokeStyle = "red";
+});
+$("#skyblueColor").on('click', function () {
+    context.strokeStyle = "skyblue";
+});
+
+// eraser
+$("#rubber").on('click', function () {
+    context.strokeStyle = "white";
+});
+
+//  clear
+$("#clear").on('click', function () {
+    context.clearRect(0, 0, myCanvas.width, myCanvas.height);
+});
+
+//  save
+$("#save").on('click', function () {
+    var imgUrl = myCanvas.toDataURL('image/png');
+    var saveA = document.createElement('a');
+    document.body.appendChild(saveA);
+    saveA.href = imgUrl;
+    saveA.download = 'mypic' + new Date().getTime();
+    saveA.target = '_blank';
+    saveA.click();
+});
+},{}],"main.js":[function(require,module,exports) {
+'use strict';
+
+require('./resize.js');
+
+require('./toolbar.js');
+
 var $headerSvg = $("header");
 var $asideColor = $(".aside");
 $headerSvg.on("click", ".bigger", function (e) {
@@ -115,8 +182,74 @@ $asideColor.on("click", "li", function (e) {
     $liItems.addClass("active").siblings().removeClass("active");
 });
 
-// canvas js
-},{}],"..\\..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
+// 获取canvas标签
+var myCanvas = document.querySelector("#cvs");
+
+// 获取上下文对象
+var context = myCanvas.getContext("2d");
+
+// 是否开始画画
+var isDraw = false;
+
+// 记录画笔最后一次的位置
+var lastPoint = {
+    x: undefined,
+    y: undefined
+};
+
+// 是否开启橡皮擦
+var eraserEnabled = false;
+
+// 鼠标单击
+myCanvas.onmousedown = function (e) {
+    isDraw = true;
+    var x = e.clientX;
+    var y = e.clientY;
+    // 记录最后一次位置
+    lastPoint = {
+        'x': x,
+        'y': y
+    };
+};
+
+// 鼠标移动
+myCanvas.onmousemove = function (e) {
+    if (isDraw) {
+        var x = e.clientX;
+        var y = e.clientY;
+        var newPoint = {
+            'x': x,
+            'y': y
+        };
+        drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y);
+        lastPoint = newPoint;
+    }
+};
+
+// 鼠标弹起
+myCanvas.onmouseup = function (e) {
+    isDraw = false;
+};
+
+// 画线
+function drawLine(x1, y1, x2, y2) {
+    // 开启一条路径
+    context.beginPath();
+    // 设置线条宽度
+    context.lineWidth = 3;
+    // 设置线条末端样式。
+    context.lineCap = "round";
+    // 设定线条与线条间接合处的样式
+    context.lineJoin = "round";
+    // moveTo(x,y)将笔触移动到指定的坐标x以及y上
+    context.moveTo(x1, y1);
+    // lineTo(x, y) 绘制一条从当前位置到指定x以及y位置的直线
+    context.lineTo(x2, y2);
+    // 通过线条来绘制图形轮廓
+    context.stroke();
+    context.closePath();
+}
+},{"./resize.js":"resize.js","./toolbar.js":"toolbar.js"}],"..\\..\\..\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\parcel\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -145,7 +278,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '59273' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '3028' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
@@ -286,5 +419,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},["..\\..\\..\\AppData\\Roaming\\npm\\node_modules\\parcel\\src\\builtins\\hmr-runtime.js","main.js"], null)
+},{}]},{},["..\\..\\..\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\parcel\\src\\builtins\\hmr-runtime.js","main.js"], null)
 //# sourceMappingURL=/main.1ecb634b.map

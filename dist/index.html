@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,28 +10,31 @@
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style type="text/css">
         .icon {
-           width: 45px; height: 45px;
-           vertical-align: -0.15em;
-           fill: currentColor;
-           overflow: hidden;
+            width: 45px;
+            height: 45px;
+            vertical-align: -0.15em;
+            fill: currentColor;
+            overflow: hidden;
         }
     </style>
 <script src="/style.bb93c61c.js"></script></head>
+
 <body>
     <div class="box">
+        <canvas width="500px" height="500px" id="cvs"></canvas>
         <header>
             <svg class="icon active bigger">
                 <use xlink:href="#icon-pen"></use>
             </svg>
-            <svg class="icon bigger">
+            <svg class="icon bigger" id="rubber">
                 <use xlink:href="#icon-rubber"></use>
             </svg>
-            <svg class="icon">
+            <svg class="icon" id="clear">
                 <use xlink:href="#icon-lajitong"></use>
             </svg>
             <svg class="icon">
                 <use xlink:href="#icon--shangyibu"></use>
-            </svg>
+            </svg>~
             <svg class="icon">
                 <use xlink:href="#icon--xiayibu"></use>
             </svg>
@@ -40,12 +44,12 @@
         </header>
         <div class="aside">
             <ul>
-                <li style="background-color: black;" class="active"></li>
-                <li style="background-color: red;"></li>
-                <li style="background-color: orange;"></li>
-                <li style="background-color: yellow;"></li>
-                <li style="background-color:green"></li>
-                <li style="background-color: skyblue;"></li>
+                <li style="background-color: black;" class="active" id="blackColor"></li>
+                <li style="background-color: red;" id="redColor"></li>
+                <li style="background-color: orange;" id="orangeColor"></li>
+                <li style="background-color: yellow;" id="yellowColor"></li>
+                <li style="background-color:green" id="greenColor"></li>
+                <li style="background-color: skyblue;" id="skyblueColor"></li>
             </ul>
         </div>
     </div>
@@ -53,4 +57,5 @@
     <script src="/main.1ecb634b.js"></script>
     <script src="//at.alicdn.com/t/font_2845401_1vvzcnkp3br.js"></script>
 </body>
+
 </html>
