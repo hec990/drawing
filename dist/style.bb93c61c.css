@@ -39,3 +39,7 @@ header svg:hover {
     margin-top: 10px;
     border: 1px solid #ccc;
 }
+.aside li:hover{
+    cursor: pointer;
+}
+
