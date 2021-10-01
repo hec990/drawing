@@ -24,8 +24,15 @@
      context.strokeStyle = "skyblue";
  })
 
+ // pen
+ $("#pen").on('click', () => {
+     context.strokeStyle = "black";
+ })
+
+
  // eraser
  $("#rubber").on('click', () => {
+     //  $("#cvs").css("cursor", "grab")
      context.strokeStyle = "white";
  })
 

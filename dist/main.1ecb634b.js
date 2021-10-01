@@ -104,6 +104,18 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   // Override the current require with this new one
   return newRequire;
 })({"resize.js":[function(require,module,exports) {
+// 工具栏图标，选中状态变大
+var $headerSvg = $("header");
+var $asideColor = $(".aside");
+$headerSvg.on("click", ".bigger", function (e) {
+    var $svgItems = $(e.currentTarget);
+    $svgItems.addClass("active").siblings().removeClass("active");
+});
+$asideColor.on("click", "li", function (e) {
+    var $liItems = $(e.currentTarget);
+    $liItems.addClass("active").siblings().removeClass("active");
+});
+
 // 画布适配
 $(function () {
     //添加窗口尺寸改变响应监听
@@ -144,8 +156,14 @@ $("#skyblueColor").on('click', function () {
     context.strokeStyle = "skyblue";
 });
 
+// pen
+$("#pen").on('click', function () {
+    context.strokeStyle = "black";
+});
+
 // eraser
 $("#rubber").on('click', function () {
+    //  $("#cvs").css("cursor", "grab")
     context.strokeStyle = "white";
 });
 
@@ -164,24 +182,7 @@ $("#save").on('click', function () {
     saveA.target = '_blank';
     saveA.click();
 });
-},{}],"main.js":[function(require,module,exports) {
-'use strict';
-
-require('./resize.js');
-
-require('./toolbar.js');
-
-var $headerSvg = $("header");
-var $asideColor = $(".aside");
-$headerSvg.on("click", ".bigger", function (e) {
-    var $svgItems = $(e.currentTarget);
-    $svgItems.addClass("active").siblings().removeClass("active");
-});
-$asideColor.on("click", "li", function (e) {
-    var $liItems = $(e.currentTarget);
-    $liItems.addClass("active").siblings().removeClass("active");
-});
-
+},{}],"draw.js":[function(require,module,exports) {
 // 获取canvas标签
 var myCanvas = document.querySelector("#cvs");
 
@@ -249,7 +250,15 @@ function drawLine(x1, y1, x2, y2) {
     context.stroke();
     context.closePath();
 }
-},{"./resize.js":"resize.js","./toolbar.js":"toolbar.js"}],"..\\..\\..\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\parcel\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
+},{}],"main.js":[function(require,module,exports) {
+'use strict';
+
+require('./resize');
+
+require('./toolbar');
+
+require('./draw');
+},{"./resize":"resize.js","./toolbar":"toolbar.js","./draw":"draw.js"}],"..\\..\\..\\AppData\\Local\\Yarn\\Data\\global\\node_modules\\parcel\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -278,7 +287,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '3028' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '2878' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

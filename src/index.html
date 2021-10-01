@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
-    <title>画一画</title>
+    <title>你笔我画</title>
     <link rel="stylesheet" href="./style.css">
     <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style type="text/css">
@@ -23,7 +23,7 @@
     <div class="box">
         <canvas width="500px" height="500px" id="cvs"></canvas>
         <header>
-            <svg class="icon active bigger">
+            <svg class="icon active bigger" id="pen">
                 <use xlink:href="#icon-pen"></use>
             </svg>
             <svg class="icon bigger" id="rubber">
@@ -32,10 +32,10 @@
             <svg class="icon" id="clear">
                 <use xlink:href="#icon-lajitong"></use>
             </svg>
-            <svg class="icon">
+            <svg class="icon" id="up-step">
                 <use xlink:href="#icon--shangyibu"></use>
-            </svg>~
-            <svg class="icon">
+            </svg>
+            <svg class="icon" id="next-step">
                 <use xlink:href="#icon--xiayibu"></use>
             </svg>
             <svg class="icon" id="save">
