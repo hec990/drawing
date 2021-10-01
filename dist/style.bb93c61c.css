@@ -78,6 +78,37 @@ header svg.active {
     transform: scale(1.2);
 }
 
+.box .brushWidth {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 10px;
+    right: 40px;
+    cursor: pointer;
+}
+
+.box .brushWidth span {
+    width: 35px;
+    margin: 20px;
+    border-style: solid;
+}
+
+.box .brushWidth span.active {
+    transform: scale(1.2);
+}
+
+.box .brushWidth .one {
+    border-width: 2px;
+}
+
+.box .brushWidth .two {
+    border-width: 4px;
+}
+
+.box .brushWidth .there {
+    border-width: 6px;
+}
+
 
 /* canvas css */
 

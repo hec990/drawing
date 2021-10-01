@@ -16,6 +16,16 @@ $asideColor.on("click", "li", e => {
         .removeClass("active");
 })
 
+// 笔刷粗细，选中状态变大
+const $brushWidth = $(".brushWidth");
+const $span = $("span");
+$brushWidth.on('click', $span, e => {
+    const $spanItems = $(e.target);
+    $spanItems
+        .addClass("active")
+        .siblings()
+        .removeClass("active");
+})
 
 
 // 画布适配

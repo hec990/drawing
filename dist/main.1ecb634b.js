@@ -116,6 +116,14 @@ $asideColor.on("click", "li", function (e) {
     $liItems.addClass("active").siblings().removeClass("active");
 });
 
+// 笔刷粗细，选中状态变大
+var $brushWidth = $(".brushWidth");
+var $span = $("span");
+$brushWidth.on('click', $span, function (e) {
+    var $spanItems = $(e.target);
+    $spanItems.addClass("active").siblings().removeClass("active");
+});
+
 // 画布适配
 $(function () {
     //添加窗口尺寸改变响应监听
@@ -189,6 +197,8 @@ var myCanvas = document.querySelector("#cvs");
 // 获取上下文对象
 var context = myCanvas.getContext("2d");
 
+var lineWidth = 5;
+
 // 是否开始画画
 var isDraw = false;
 
@@ -237,7 +247,7 @@ function drawLine(x1, y1, x2, y2) {
     // 开启一条路径
     context.beginPath();
     // 设置线条宽度
-    context.lineWidth = 3;
+    context.lineWidth = lineWidth;
     // 设置线条末端样式。
     context.lineCap = "round";
     // 设定线条与线条间接合处的样式
@@ -250,6 +260,14 @@ function drawLine(x1, y1, x2, y2) {
     context.stroke();
     context.closePath();
 }
+
+//  笔刷粗细
+$(".two").on('click', function () {
+    lineWidth = 10;
+});
+$(".there").on('click', function () {
+    lineWidth = 15;
+});
 },{}],"main.js":[function(require,module,exports) {
 'use strict';
 
@@ -287,7 +305,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '2878' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '6006' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

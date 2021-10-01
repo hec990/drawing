@@ -4,6 +4,8 @@ let myCanvas = document.querySelector("#cvs")
 // 获取上下文对象
 let context = myCanvas.getContext("2d");
 
+var lineWidth = 5;
+
 // 是否开始画画
 let isDraw = false;
 
@@ -53,7 +55,7 @@ function drawLine(x1, y1, x2, y2) {
     // 开启一条路径
     context.beginPath()
         // 设置线条宽度
-    context.lineWidth = 3;
+    context.lineWidth = lineWidth;
     // 设置线条末端样式。
     context.lineCap = "round";
     // 设定线条与线条间接合处的样式
@@ -66,3 +68,12 @@ function drawLine(x1, y1, x2, y2) {
     context.stroke();
     context.closePath();
 }
+
+
+//  笔刷粗细
+$(".two").on('click', () => {
+    lineWidth = 10;
+})
+$(".there").on('click', () => {
+    lineWidth = 15;
+})
