@@ -18,7 +18,6 @@ let lastPoint = {
 // 是否开启橡皮擦
 let eraserEnabled = false
 
-
 // 鼠标单击
 myCanvas.onmousedown = function(e) {
     isDraw = true;
