@@ -29,10 +29,8 @@
      context.strokeStyle = "black";
  })
 
-
  // eraser
  $("#rubber").on('click', () => {
-     //  $("#cvs").css("cursor", "grab")
      context.strokeStyle = "white";
  })
 

@@ -171,7 +171,6 @@ $("#pen").on('click', function () {
 
 // eraser
 $("#rubber").on('click', function () {
-    //  $("#cvs").css("cursor", "grab")
     context.strokeStyle = "white";
 });
 
@@ -211,36 +210,58 @@ var lastPoint = {
 // 是否开启橡皮擦
 var eraserEnabled = false;
 
-// 鼠标单击
-myCanvas.onmousedown = function (e) {
-    isDraw = true;
-    var x = e.clientX;
-    var y = e.clientY;
-    // 记录最后一次位置
-    lastPoint = {
-        'x': x,
-        'y': y
-    };
-};
+function drawLine(x1, y1, x2, y2) {
+    context.beginPath();
+    context.moveTo(x1, y1); // 起点
+    context.lineWidth = lineWidth;
+    context.lineTo(x2, y2); // 终点
+    context.stroke();
+    context.closePath();
+}
 
-// 鼠标移动
-myCanvas.onmousemove = function (e) {
-    if (isDraw) {
+var isTouchDevice = 'ontouchstart' in document.documentElement;
+var last = void 0;
+
+if (isTouchDevice) {
+    myCanvas.ontouchstart = function (e) {
+        var x = e.touches[0].clientX;
+        var y = e.touches[0].clientY;
+        last = [x, y];
+    };
+    myCanvas.ontouchmove = function (e) {
+        var x = e.touches[0].clientX;
+        var y = e.touches[0].clientY;
+        drawLine(last[0], last[1], x, y);
+        last = [x, y];
+    };
+} else {
+    myCanvas.onmousedown = function (e) {
+        isDraw = true;
         var x = e.clientX;
         var y = e.clientY;
-        var newPoint = {
+        // 记录最后一次位置
+        lastPoint = {
             'x': x,
             'y': y
         };
-        drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y);
-        lastPoint = newPoint;
-    }
-};
+    };
 
-// 鼠标弹起
-myCanvas.onmouseup = function (e) {
-    isDraw = false;
-};
+    myCanvas.onmousemove = function (e) {
+        if (isDraw) {
+            var x = e.clientX;
+            var y = e.clientY;
+            var newPoint = {
+                'x': x,
+                'y': y
+            };
+            drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y);
+            lastPoint = newPoint;
+        }
+    };
+    myCanvas.onmouseup = function (e) {
+        isDraw = false;
+    };
+}
 
 // 画线
 function drawLine(x1, y1, x2, y2) {
@@ -305,7 +326,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '6006' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '6703' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

@@ -7,47 +7,101 @@ let context = myCanvas.getContext("2d");
 var lineWidth = 5;
 
 // 是否开始画画
-let isDraw = false;
+var isDraw = false;
 
 // 记录画笔最后一次的位置
-let lastPoint = {
+var lastPoint = {
     x: undefined,
     y: undefined
 };
 
 // 是否开启橡皮擦
-let eraserEnabled = false
+var eraserEnabled = false
 
-// 鼠标单击
-myCanvas.onmousedown = function(e) {
-    isDraw = true;
-    let x = e.clientX;
-    let y = e.clientY;
-    // 记录最后一次位置
-    lastPoint = {
-        'x': x,
-        'y': y
-    };
+function drawLine(x1, y1, x2, y2) {
+    context.beginPath();
+    context.moveTo(x1, y1) // 起点
+    context.lineWidth = lineWidth
+    context.lineTo(x2, y2) // 终点
+    context.stroke()
+    context.closePath()
 }
 
-// 鼠标移动
-myCanvas.onmousemove = function(e) {
-    if (isDraw) {
+
+var isTouchDevice = 'ontouchstart' in document.documentElement;
+let last;
+
+if (isTouchDevice) {
+    myCanvas.ontouchstart = e => {
+        var x = e.touches[0].clientX
+        var y = e.touches[0].clientY
+        last = [x, y]
+    }
+    myCanvas.ontouchmove = e => {
+        var x = e.touches[0].clientX
+        var y = e.touches[0].clientY
+        drawLine(last[0], last[1], x, y)
+        last = [x, y]
+
+    }
+} else {
+    myCanvas.onmousedown = function(e) {
+        isDraw = true;
         let x = e.clientX;
         let y = e.clientY;
-        let newPoint = {
+        // 记录最后一次位置
+        lastPoint = {
             'x': x,
             'y': y
         };
-        drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y);
-        lastPoint = newPoint;
+    }
+
+    myCanvas.onmousemove = function(e) {
+        if (isDraw) {
+            let x = e.clientX;
+            let y = e.clientY;
+            let newPoint = {
+                'x': x,
+                'y': y
+            };
+            drawLine(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y);
+            lastPoint = newPoint;
+        }
+    }
+    myCanvas.onmouseup = function(e) {
+        isDraw = false;
     }
 }
 
-// 鼠标弹起
-myCanvas.onmouseup = function(e) {
-    isDraw = false;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // 画线
 function drawLine(x1, y1, x2, y2) {
