@@ -35,6 +35,7 @@ parcel build src/index.html --no-minify --public-url ./
 - [x] 移动端功能呈现
 - [ ] 保存（画板有内容则下载保存，无内容则提示请画画）
 - [ ] 解决屏幕尺寸变化，画板内容消失的问题
+- [ ] 撤销功能
 
 
 
