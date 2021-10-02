@@ -1,5 +1,5 @@
 ### 前言
-- 在线预览：
+- 在线预览：https://hec990.github.io/drawing/dist/index.html
 - 针对用户：PC端、ipad
 
 ### 一、二次开发
