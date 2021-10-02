@@ -19,7 +19,7 @@ yarn global add parcel
 #### 启用
 
 ```
-parcel src/index.html
+parcel build src/index.html --no-minify --public-url ./
 ```
 
 ### 二、屏幕适配
