@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+/* page css */
+
+body {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden
+}
+
+.box {
+    position: relative;
+}
+
+header {
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+header svg {
+    margin-left: 10px;
+    transition: all 0.5s;
+}
+
+header svg:hover {
+    filter: invert(78%) sepia(52%) saturate(4753%) hue-rotate(359deg) brightness(102%) contrast(105%);
+}
+
+header svg .bigger:hover {
+    transform: scale(1.3);
+    filter: invert(78%) sepia(52%) saturate(4753%) hue-rotate(359deg) brightness(102%) contrast(105%);
+}
+
+header svg.active {
+    transform: scale(1.2);
+    filter: invert(78%) sepia(52%) saturate(4753%) hue-rotate(359deg) brightness(102%) contrast(105%);
+}
+
+.aside {
+    display: inline-block;
+    position: absolute;
+    top: 80px;
+    left: 0;
+}
+
+.aside ul {
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.aside li {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    margin-top: 10px;
+    border: 2px solid #ccc;
+    transition: all 1s;
+}
+
+.aside li:hover {
+    cursor: pointer;
+}
+
+.aside li.active {
+    transform: scale(1.2);
+}
+
+.box .brushWidth {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 10px;
+    right: 40px;
+    cursor: pointer;
+}
+
+.box .brushWidth span {
+    width: 35px;
+    margin: 20px;
+    border-style: solid;
+}
+
+.box .brushWidth span.active {
+    transform: scale(1.2);
+}
+
+.box .brushWidth .one {
+    border-width: 2px;
+}
+
+.box .brushWidth .two {
+    border-width: 4px;
+}
+
+.box .brushWidth .there {
+    border-width: 6px;
+}
+
+
+/* canvas css */
+
+#cvs {
+    cursor: crosshair;
+}
