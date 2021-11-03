@@ -4,7 +4,7 @@
 
 ### 一、二次开发
 
-#### 安装
+#### 安装parcel
 
 ```bash
 npm i -g parcel
@@ -16,7 +16,12 @@ npm i -g parcel
 yarn global add parcel
 ```
 
-#### 启用
+#### 预览
+```
+parcel src/index.html
+```
+
+#### 打包
 
 ```
 parcel build src/index.html --no-minify --public-url ./
